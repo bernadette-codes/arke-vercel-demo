@@ -1,5 +1,5 @@
 
 export default (req, res) => {
   res.statusCode = 200
-  res.json({ message: 'Hello World!' })
+  res.json({ message: 'Yay! It is Friday!' })
 }

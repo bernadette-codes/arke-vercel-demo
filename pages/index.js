@@ -4,21 +4,24 @@ import styles from '../styles/Home.module.css'
 
 
 export default function Home() {
-  const [message, setMessage] = useState("Change me");
+  const [message, setMessage] = useState("Vercel & Next.js Demo");
   const [memeImage, setmemeImage] = useState("https://i.imgur.com/qcwCIUL.jpg");
 
   async function getMessage() {
-    const res = await fetch("/api/mesage");
+    const res = await fetch("/api/message");
     const newMessage = await res.text();
-    setMessage(newMessage);
+    const parsedData = JSON.parse(newMessage)
+    setMessage(parsedData.message);
+    console.log("newMessage", parsedData)
   }
 
   async function getNewMeme() {
+    setmemeImage('/placeholder-image.png');
+
     const res = await fetch("/api/meme");
     const newMeme = await res.text();
     const parsedData = JSON.parse(newMeme)
     setmemeImage(parsedData.image);
-    console.log("newMeme", parsedData.image)
   }
 
   return (
@@ -34,8 +37,10 @@ export default function Home() {
         </h1>
 
 
-        <button onClick={getMessage}>{message}</button>
+        <h2 onClick={getMessage}>{message}</h2>
+
         <img src={memeImage} onClick={getNewMeme}/>
+
 
 
 
