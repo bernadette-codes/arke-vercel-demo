@@ -58,7 +58,7 @@ export default function Home() {
         </div>
 
         <div className={styles.topic}>
-          <h2 className={styles.subHeader}>What is Vercel?</h2>
+          <h2 className={styles.subHeader}>What is Vercel????</h2>
           <ul className={styles.context}>
             <li>Deployment platform for static sites</li>
             <li>Host websites and web services that deploy instantly and scale automatically – all without any configuration</li>
