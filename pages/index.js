@@ -1,7 +1,16 @@
+import React, {  useState } from "react";
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+  const [message, setMessage] = useState("Change me");
+
+  async function getMessage() {
+    const res = await fetch("/api/hello");
+    const newMessage = await res.text();
+    setMessage(newMessage);
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,6 +23,9 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
+
+        <button onClick={getMessage}>{message}</button>
+        
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
