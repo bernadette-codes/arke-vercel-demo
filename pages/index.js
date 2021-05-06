@@ -2,13 +2,23 @@ import React, {  useState } from "react";
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+
 export default function Home() {
   const [message, setMessage] = useState("Change me");
+  const [memeImage, setmemeImage] = useState("https://i.imgur.com/qcwCIUL.jpg");
 
   async function getMessage() {
-    const res = await fetch("/api/hello");
+    const res = await fetch("/api/mesage");
     const newMessage = await res.text();
     setMessage(newMessage);
+  }
+
+  async function getNewMeme() {
+    const res = await fetch("/api/meme");
+    const newMeme = await res.text();
+    const parsedData = JSON.parse(newMeme)
+    setmemeImage(parsedData.image);
+    console.log("newMeme", parsedData.image)
   }
 
   return (
@@ -25,7 +35,14 @@ export default function Home() {
 
 
         <button onClick={getMessage}>{message}</button>
-        
+        <img src={memeImage} onClick={getNewMeme}/>
+
+
+
+
+
+
+
         <p className={styles.description}>
           Get started by editing{' '}
           <code className={styles.code}>pages/index.js</code>
